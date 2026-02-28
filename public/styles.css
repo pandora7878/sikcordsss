@@ -1,0 +1,36 @@
+:root {
+  --bg: #0b1020;
+  --card: rgba(255,255,255,0.08);
+  --text: #f0f4ff;
+  --accent: #7c5cff;
+}
+* { box-sizing: border-box; font-family: Inter, system-ui, sans-serif; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: radial-gradient(circle at top right, #3c2e99, #091024 45%, #04070f);
+}
+#app { display: grid; grid-template-columns: 320px 1fr; gap: 16px; padding: 16px; }
+.glass { backdrop-filter: blur(10px); background: var(--card); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; }
+.sidebar, .main { padding: 16px; }
+.sidebar { display: flex; flex-direction: column; gap: 12px; max-height: calc(100vh - 32px); overflow: auto; }
+ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+li { background: rgba(255,255,255,0.06); padding: 8px; border-radius: 10px; }
+button, .btn {
+  border: none; padding: 8px 12px; border-radius: 10px; background: linear-gradient(120deg, var(--accent), #3bc9ff);
+  color: white; text-decoration: none; cursor: pointer;
+}
+input { width: 100%; padding: 9px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; }
+header { display: flex; justify-content: space-between; align-items: center; }
+.messages { margin: 12px 0; min-height: 300px; max-height: 42vh; overflow: auto; display: grid; gap: 8px; }
+.msg { padding: 9px; border-radius: 10px; background: rgba(255,255,255,0.07); }
+.msg.me { border-left: 3px solid #3bc9ff; }
+.message-form { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; }
+.voice-box { margin-top: 12px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.05); }
+.admin-wrap { margin: 24px; padding: 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { border: 1px solid rgba(255,255,255,0.2); padding: 6px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(120px,1fr)); gap: 10px; margin: 12px 0; }
+.stats div { background: rgba(255,255,255,0.08); padding: 10px; border-radius: 10px; }
+@media (max-width: 920px) { #app { grid-template-columns: 1fr; } }

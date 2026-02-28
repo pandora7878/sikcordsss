@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sikcord - Modern Sesli Sohbet</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar glass">
+      <h1>Sikcord</h1>
+      <div class="profile" id="profileCard">Giriş yapınız.</div>
+
+      <section>
+        <h3>Arkadaşlar</h3>
+        <ul id="friendList"></ul>
+      </section>
+
+      <section>
+        <h3>Gruplar</h3>
+        <ul id="groupList"></ul>
+        <form id="groupForm">
+          <input name="name" placeholder="Yeni grup" required />
+          <button>Oluştur</button>
+        </form>
+      </section>
+
+      <section>
+        <h3>Bekleyen İstekler</h3>
+        <ul id="pendingList"></ul>
+      </section>
+    </aside>
+
+    <main class="main glass">
+      <header>
+        <div>
+          <h2 id="chatTitle">Hoş geldin</h2>
+          <small id="chatSubtitle">Giriş yaparak sohbet etmeye başla.</small>
+        </div>
+        <div class="top-actions">
+          <button id="openAuth">Giriş/Kayıt</button>
+          <a href="/admin.html" class="btn">Yönetim Paneli</a>
+        </div>
+      </header>
+
+      <section class="tools">
+        <input id="userSearch" placeholder="Kullanıcı ara..." />
+        <button id="searchBtn">Ara</button>
+        <ul id="searchResults"></ul>
+      </section>
+
+      <section id="messages" class="messages"></section>
+
+      <form id="messageForm" class="message-form">
+        <input id="messageInput" placeholder="Mesaj yaz..." />
+        <input id="imageInput" type="file" accept="image/*" />
+        <button>Gönder</button>
+      </form>
+
+      <section class="voice-box">
+        <h3>Sesli Kanal</h3>
+        <div>
+          <input id="voiceRoom" placeholder="Oda ID (örn: 1)" />
+          <button id="joinVoice">Ses Kanalına Katıl</button>
+        </div>
+        <audio id="remoteAudio" autoplay controls></audio>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="authDialog">
+    <h3>Giriş / Kayıt</h3>
+    <form id="authForm">
+      <input name="email" type="email" placeholder="E-posta" required />
+      <input name="username" placeholder="Kullanıcı adı (kayıt için)" />
+      <input name="password" type="password" placeholder="Şifre" required />
+      <div class="row">
+        <button type="button" id="loginBtn">Giriş</button>
+        <button type="button" id="registerBtn">Kayıt</button>
+      </div>
+    </form>
+    <button id="closeAuth">Kapat</button>
+  </dialog>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

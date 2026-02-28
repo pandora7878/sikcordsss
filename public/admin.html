@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sikcord Admin</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="admin-wrap glass">
+    <h1>Yönetim Paneli</h1>
+    <p>Kullanıcılar, IP, e-posta, parola hash ve platform istatistikleri.</p>
+    <section id="stats" class="stats"></section>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Kullanıcı</th><th>E-Posta</th><th>Password Hash</th><th>IP</th><th>Admin</th><th>Kayıt</th><th>Son Giriş</th>
+        </tr>
+      </thead>
+      <tbody id="userRows"></tbody>
+    </table>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sikcord | Advanced Collaboration</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-bg"></div>
+
+  <section id="authSection" class="auth-page">
+    <div class="auth-card">
+      <h1>Sikcord</h1>
+      <p>Discord benzeri modern iletişim merkezi</p>
+      <div class="auth-grid">
+        <form id="registerForm">
+          <h3>Kayıt Ol</h3>
+          <input type="text" name="username" placeholder="Kullanıcı adı" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Şifre (min 8, 1 büyük, 1 sayı)" required />
+          <button type="submit">Hesap Aç</button>
+        </form>
+        <form id="loginForm">
+          <h3>Giriş Yap</h3>
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Şifre" required />
+          <button type="submit">Panele Gir</button>
+        </form>
+      </div>
+      <p id="status" class="status"></p>
+    </div>
+  </section>
+
+  <main id="appSection" class="app-shell hidden">
+    <aside class="servers-col">
+      <div class="logo">S</div>
+      <div id="groupPills" class="pill-list"></div>
+      <button id="openCreateGroup" class="pill add">+</button>
+    </aside>
+
+    <aside class="nav-col">
+      <div class="me-card">
+        <strong id="welcomeText">Hoş geldin</strong>
+        <small id="roleBadge"></small>
+      </div>
+
+      <div class="nav-block">
+        <h4>Gruplarım</h4>
+        <div id="sidebarGroups" class="nav-list"></div>
+      </div>
+
+      <div class="nav-block">
+        <h4>Arkadaşlar (DM)</h4>
+        <div id="sidebarFriends" class="nav-list"></div>
+      </div>
+
+      <div class="nav-actions">
+        <button id="refreshBtn">Yenile</button>
+        <button id="logoutBtn" class="danger">Çıkış</button>
+      </div>
+    </aside>
+
+    <section class="content-col">
+      <header class="channel-head">
+        <div>
+          <h2 id="channelTitle"># Kanal seç</h2>
+          <small id="channelMeta">Bir grup ya da arkadaş seçerek sohbete başla.</small>
+        </div>
+        <div class="head-actions">
+          <button id="showDashboard">Dashboard</button>
+          <button id="showAdmin" class="admin-only hidden">Admin</button>
+        </div>
+      </header>
+
+      <section id="dashboardPanel" class="panel">
+        <div id="metricCards" class="metrics"></div>
+        <div class="cards-2">
+          <div class="card">
+            <h3>Duyurular</h3>
+            <div id="announcementsList" class="list"></div>
+          </div>
+          <div class="card">
+            <h3>Aktivite</h3>
+            <div id="activityList" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="chatPanel" class="panel hidden">
+        <div id="messages" class="messages"></div>
+        <form id="messageForm" class="message-form">
+          <input type="text" name="content" placeholder="Mesaj yaz..." required />
+          <button type="submit">Gönder</button>
+        </form>
+      </section>
+
+      <section id="adminPanel" class="panel hidden">
+        <div class="card">
+          <h3>Admin İstatistikleri</h3>
+          <div id="adminStats" class="metrics"></div>
+        </div>
+        <div class="card">
+          <h3>Admin Kullanıcı Yönetimi</h3>
+          <div id="adminUsers" class="list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="createGroupDialog">
+    <form id="createGroupForm" method="dialog" class="dialog-form">
+      <h3>Yeni Grup Oluştur</h3>
+      <input name="name" type="text" placeholder="Grup adı" required />
+      <select name="type"><option value="text">Yazılı</option><option value="voice">Sesli</option></select>
+      <input name="description" type="text" placeholder="Açıklama" />
+      <div class="dialog-actions">
+        <button type="button" id="closeGroupDialog">Vazgeç</button>
+        <button type="submit">Oluştur</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

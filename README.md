@@ -37,8 +37,8 @@ ADMIN_EMAIL=owner@sikcord.com ADMIN_PASSWORD='StrongPass!123' npm start
 
 Bu repo artık Vercel için hazır:
 
-- `vercel.json` ile route/build ayarları tanımlı.
-- `api/index.js` serverless entrypoint olarak çalışır.
+- `vercel.json` artık tüm istekleri tek serverless fonksiyona (`api/index.js`) yönlendirir.
+- Statik dosyalar ve `/api/*` çağrıları aynı Node handler üzerinden çözülür; route çakışması yaşanmaz.
 - Vercel ortamında dosya sistemi kalıcı olmadığı için veriler **memory** üzerinde tutulur (deploy/restart sonrası sıfırlanır).
 
 Vercel'de kalıcı veri istiyorsan bir dış veritabanı (Neon/Supabase/Mongo) bağlamalısın.

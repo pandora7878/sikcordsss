@@ -4,7 +4,8 @@ const fs = require('fs');
 const crypto = require('crypto');
 
 const PORT = Number(process.env.PORT || 3000);
-const DB_PATH = path.join(__dirname, 'data.json');
+const isVercel = Boolean(process.env.VERCEL);
+const DB_PATH = isVercel ? path.join('/tmp', 'data.json') : path.join(__dirname, 'data.json');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const now = () => new Date().toISOString();
@@ -178,7 +179,7 @@ const sendStatic = (res, filePath) => {
   return true;
 };
 
-const server = http.createServer(async (req, res) => {
+const requestHandler = async (req, res) => {
   if (req.method === 'OPTIONS') return json(res, 204, {});
 
   const url = new URL(req.url, `http://${req.headers.host}`);
@@ -646,7 +647,20 @@ const server = http.createServer(async (req, res) => {
   } catch (err) {
     return json(res, 500, { error: err.message || 'Sunucu hatası.' });
   }
-});
+};
 
-ensureAdmin();
-server.listen(PORT, () => console.log(`Sikcord running at http://localhost:${PORT}`));
+let adminSeeded = false;
+const handler = async (req, res) => {
+  if (!adminSeeded) {
+    ensureAdmin();
+    adminSeeded = true;
+  }
+  return requestHandler(req, res);
+};
+
+if (require.main === module) {
+  const server = http.createServer(handler);
+  server.listen(PORT, () => console.log(`Sikcord running at http://localhost:${PORT}`));
+}
+
+module.exports = { handler };

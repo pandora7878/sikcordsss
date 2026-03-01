@@ -31,3 +31,20 @@ Değiştirmek için:
 ```bash
 ADMIN_EMAIL=owner@sikcord.com ADMIN_PASSWORD='StrongPass!123' npm start
 ```
+
+
+## Vercel Deploy
+
+Bu proje artık Vercel üzerinde de çalışacak şekilde düzenlendi:
+
+- `api/index.js` serverless giriş noktası
+- `vercel.json` ile tüm istekler API handler'a yönlenir
+- Vercel ortamında veri dosyası `/tmp/data.json` kullanılır
+
+Deploy adımları:
+
+```bash
+vercel
+```
+
+> Not: `/tmp` Vercel'de kalıcı değildir. Yani yeniden deploy/ölçeklemede veriler sıfırlanabilir. Kalıcı kullanım için Vercel KV / harici DB önerilir.
